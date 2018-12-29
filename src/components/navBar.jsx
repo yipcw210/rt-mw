@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 class NavBar extends Component {
   render() {
-    console.log(this.props.currentUser);
     return (
       <nav className="navbar navbar-expand-md navbar-light bg-light ">
         <Link to="/" className="navbar-brand">
@@ -21,25 +20,25 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse" id="mainNavBar">
           <div className="container">
             <ul className="navbar-nav justify-content-center">
-              {!this.props.currentUser && (
+              {!this.props.currentUser.name && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">
                     Register
                   </Link>
                 </li>
               )}
-              {this.props.currentUser && (
+              {this.props.currentUser.name && (
                 <Link className="nav-link" to="/profile">
                   Profile
                 </Link>
               )}
               <li className="nav-item">
-                {!this.props.currentUser && (
+                {!this.props.currentUser.name && (
                   <Link className="nav-link" to="/login">
                     Login
                   </Link>
                 )}
-                {this.props.currentUser && (
+                {this.props.currentUser.name && (
                   <Link className="nav-link" to="/logout">
                     Logout
                   </Link>

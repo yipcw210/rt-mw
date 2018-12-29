@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import * as actions from "../actions/registerActions";
 import Joi from "joi-browser";
 import { registerUser } from "../services/registerService";
+import Form from "./Form";
 
-class Register extends Component {
+class Register extends Form {
   async componentDidMount() {}
   schema = {
     registerUsername: Joi.string()
@@ -15,87 +16,21 @@ class Register extends Component {
       .required()
   };
 
-  componentWillReceiveProps({ registerInfo, registerError }) {
-    const usernameError = this.validateProperty(
-      "registerUsername",
-      registerInfo.registerUsername
-    );
-    if (
-      registerInfo.registerUsername &&
-      registerError.registerUsernameError !== usernameError
-    ) {
-      this.props.updateRegisterUsernameError(usernameError);
-    }
-
-    const passwordError = this.validateProperty(
-      "registerPassword",
-      registerInfo.registerPassword
-    );
-    if (
-      registerInfo.registerPassword &&
-      registerError.registerPasswordError !== passwordError
-    ) {
-      this.props.updateRegisterPasswordError(passwordError);
-    }
+  componentWillReceiveProps({ registerInfo: info, registerError: infoError }) {
+    this.updateError(info, infoError);
   }
-
-  validateForm = () => {
-    const { registerInfo } = this.props;
-    const usernameError = this.validateProperty(
-      "registerUsername",
-      registerInfo.registerUsername
-    );
-    {
-      this.props.updateRegisterUsernameError(usernameError);
-    }
-
-    const passwordError = this.validateProperty(
-      "registerPassword",
-      registerInfo.registerPassword
-    );
-    {
-      this.props.updateRegisterPasswordError(passwordError);
-    }
-  };
-
-  hasError = () => {
-    for (let key in this.props.registerError) {
-      if (this.props.registerError[key]) return true;
-    }
-    return false;
-  };
-
-  validateProperty = (name, value) => {
-    const obj = { [name]: value };
-    const schema = { [name]: this.schema[name] };
-    const { error } = Joi.validate(obj, schema);
-    return error ? error.details[0].message : "";
-  };
-
-  handleAccountChange = event => {
-    switch (event.target.id) {
-      case "username": {
-        this.props.updateRegisterUsername(event.target.value);
-        console.log(this.props.registerInfo);
-        break;
-      }
-      case "password": {
-        this.props.updateRegisterPassword(event.target.value);
-        break;
-      }
-      default:
-        break;
-    }
-  };
 
   handleSubmit = async e => {
     e.preventDefault();
-    this.validateForm();
-    if (!this.hasError()) {
+    this.validateForm(this.props.registerInfo);
+    if (!this.hasError(this.props.registerError)) {
+      alert("registering...");
       const { headers } = await registerUser(this.props.registerInfo);
+      alert("register done");
       const jwt = headers["x-auth-token"];
       localStorage.setItem("token", jwt);
-      this.props.history.push("/");
+      // this.props.history.push("/");
+      window.location.href = "/";
     }
   };
 
@@ -111,7 +46,7 @@ class Register extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  id="username"
+                  id="registerUsername"
                   placeholder="Enter your username"
                   onChange={this.handleAccountChange}
                 />
@@ -128,7 +63,7 @@ class Register extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  id="password"
+                  id="registerPassword"
                   placeholder="Enter your password"
                   onChange={this.handleAccountChange}
                 />

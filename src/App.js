@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Home from "./components/Home";
 import { getCurrentUser } from "./services/authService";
 import { saveCurrentUser } from "./actions/authActions";
@@ -21,6 +22,7 @@ class App extends Component {
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
           <Route path="/" component={Home} />
         </Switch>
       </React.Fragment>
