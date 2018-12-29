@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/registerActions";
 import Joi from "joi-browser";
+import { registerUser } from "../services/registerService";
 
 class Register extends Component {
+  async componentDidMount() {}
   schema = {
     registerUsername: Joi.string()
       .min(5)
@@ -56,6 +58,13 @@ class Register extends Component {
     }
   };
 
+  hasError = () => {
+    for (let key in this.props.registerError) {
+      if (this.props.registerError[key]) return true;
+    }
+    return false;
+  };
+
   validateProperty = (name, value) => {
     const obj = { [name]: value };
     const schema = { [name]: this.schema[name] };
@@ -79,9 +88,15 @@ class Register extends Component {
     }
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     this.validateForm();
+    if (!this.hasError()) {
+      const { headers } = await registerUser(this.props.registerInfo);
+      const jwt = headers["x-auth-token"];
+      localStorage.setItem("token", jwt);
+      this.props.history.push("/");
+    }
   };
 
   render() {
