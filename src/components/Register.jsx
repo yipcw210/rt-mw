@@ -6,7 +6,7 @@ import { registerUser } from "../services/registerService";
 import Form from "./Form";
 
 class Register extends Form {
-  async componentDidMount() {}
+  componentDidMount() {}
   schema = {
     registerUsername: Joi.string()
       .min(5)

@@ -40,6 +40,7 @@ class Form extends Component {
   handleAccountChange = event => {
     const key = event.target.id;
     const newValue = event.target.value;
+    console.log(newValue);
     this.props[`update${key.charAt(0).toUpperCase() + key.slice(1)}`](newValue);
   };
 }

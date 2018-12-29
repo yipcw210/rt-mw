@@ -1,9 +1,20 @@
-import { SAVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/types";
+import {
+  SAVE_CURRENT_USER,
+  LOGOUT_CURRENT_USER,
+  LOGIN_UPDATE_USERNAME,
+  LOGIN_UPDATE_PASSWORD,
+  LOGIN_UPDATE_USERNAME_ERROR,
+  LOGIN_UPDATE_PASSWORD_ERROR
+} from "../actions/types";
 
 const initialState = {
   currentUser: {
     name: ""
-  }
+  },
+  loginUsername: "",
+  loginPassword: "",
+  loginUsernameError: "",
+  loginPasswordError: ""
 };
 
 export function auth(state, action) {
@@ -12,6 +23,14 @@ export function auth(state, action) {
       return { ...state, currentUser: { name: action.payload } };
     case LOGOUT_CURRENT_USER:
       return initialState;
+    case LOGIN_UPDATE_USERNAME:
+      return { ...state, loginUsername: action.payload };
+    case LOGIN_UPDATE_PASSWORD:
+      return { ...state, loginPassword: action.payload };
+    case LOGIN_UPDATE_USERNAME_ERROR:
+      return { ...state, loginUsernameError: action.payload };
+    case LOGIN_UPDATE_PASSWORD_ERROR:
+      return { ...state, loginPasswordError: action.payload };
     default:
       return initialState;
   }

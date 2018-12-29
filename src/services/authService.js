@@ -9,6 +9,9 @@ export function getCurrentUser() {
   } catch (ex) {}
 }
 
-export function login({ username, password }) {
-  return http.post("/auth", { email: `${username}@movie.com`, password });
+export function login(user) {
+  return http.post("/auth", {
+    email: `${user.loginUsername}@movie.com`,
+    password: user.loginPassword
+  });
 }
