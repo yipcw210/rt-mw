@@ -13,7 +13,8 @@ import { store } from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faThumbsUp as faThumbsUpSolid,
-  faThumbsDown as faThumbsDownSolid
+  faThumbsDown as faThumbsDownSolid,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faThumbsUp as faThumbsUpRegular,
@@ -24,7 +25,8 @@ library.add(
   faThumbsUpSolid,
   faThumbsUpRegular,
   faThumbsDownSolid,
-  faThumbsDownRegular
+  faThumbsDownRegular,
+  faSearch
 );
 
 class App extends Component {

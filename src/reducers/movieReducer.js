@@ -1,13 +1,16 @@
-import { FETCH_MOVIES } from "../actions/types";
+import { FETCH_MOVIES, UPDATE_MOVIES_SEARCH_KEYWORDS } from "../actions/types";
 
 const initialState = {
-  movies: ""
+  movies: [],
+  moviesSearchKeywords: ""
 };
 
 export function movie(state, action) {
   switch (action.type) {
     case FETCH_MOVIES:
       return { ...state, movies: action.payload };
+    case UPDATE_MOVIES_SEARCH_KEYWORDS:
+      return { ...state, moviesSearchKeywords: action.payload };
     default:
       return initialState;
   }

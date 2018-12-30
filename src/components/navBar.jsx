@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import "./css/navBar.css";
 
 class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-light bg-light ">
+      <nav className="navbar navbar-expand-md navbar-light bg-white navBarFont">
         <Link to="/" className="navbar-brand">
           Movie
         </Link>
