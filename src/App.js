@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import NavBar from "./components/navBar";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
-import Home from "./components/Home";
 import { getCurrentUser } from "./services/authService";
 import { saveCurrentUser } from "./actions/authActions";
 import { store } from "./store";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsUp as faThumbsUpSolid,
   faThumbsDown as faThumbsDownSolid
