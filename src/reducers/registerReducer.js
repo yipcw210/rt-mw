@@ -11,7 +11,7 @@ const initialState = {
   registerUsernameError: "",
   registerPasswordError: ""
 };
-export function register(state, action) {
+export function register(state = initialState, action) {
   switch (action.type) {
     case REGISTER_UPDATE_USERNAME:
       return { ...state, registerUsername: action.payload };
@@ -23,6 +23,6 @@ export function register(state, action) {
       return { ...state, registerPasswordError: action.payload };
 
     default:
-      return initialState;
+      return state;
   }
 }

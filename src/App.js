@@ -32,7 +32,8 @@ library.add(
 class App extends Component {
   componentDidMount() {
     const user = getCurrentUser();
-    if (user) store.dispatch(saveCurrentUser({ name: user.name }));
+    console.log(user);
+    if (user) store.dispatch(saveCurrentUser(user));
   }
   render() {
     return (

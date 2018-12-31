@@ -24,10 +24,12 @@ class Register extends Form {
     e.preventDefault();
     this.validateForm(this.props.registerInfo);
     if (!this.hasError(this.props.registerError)) {
-      alert("registering...");
-      const { headers } = await registerUser(this.props.registerInfo);
-      alert("register done");
+      const { data, headers } = await registerUser(this.props.registerInfo);
+      console.log("reg");
+      console.log(data);
+      console.log(headers);
       const jwt = headers["x-auth-token"];
+      console.log(jwt);
       localStorage.setItem("token", jwt);
       // this.props.history.push("/");
       window.location.href = "/";

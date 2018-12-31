@@ -1,5 +1,7 @@
 import axios from "axios";
+import { getJwt } from "./authService";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.headers.common["x-auth-token"] = getJwt();
 axios.interceptors.response.use(null, error => {
   if (error.response) {
     const expectedError =

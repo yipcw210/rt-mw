@@ -8,6 +8,14 @@ export function getCurrentUser() {
     return user;
   } catch (ex) {}
 }
+export function getJwt() {
+  try {
+    const jwt = localStorage.getItem("token");
+    return jwt;
+  } catch (ex) {
+    return null;
+  }
+}
 
 export function login(user) {
   return http.post("/auth", {
