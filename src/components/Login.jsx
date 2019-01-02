@@ -52,7 +52,7 @@ class Login extends Form {
                   className="form-control"
                   id="loginUsername"
                   placeholder="Enter your username"
-                  onChange={this.handleAccountChange}
+                  onChange={this.handleValueChange}
                 />
                 {loginError.loginUsernameError && (
                   <div className="alert alert-danger">
@@ -69,7 +69,7 @@ class Login extends Form {
                   className="form-control"
                   id="loginPassword"
                   placeholder="Enter your password"
-                  onChange={this.handleAccountChange}
+                  onChange={this.handleValueChange}
                 />
                 {loginError.loginPasswordError && (
                   <div className="alert alert-danger">

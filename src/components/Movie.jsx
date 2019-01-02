@@ -72,18 +72,25 @@ class Movie extends Component {
   renderMovies = movies => {
     if (movies) {
       movies = movies.map((movie, index) => (
-        <div className="card col-3 mx-4 my-2" key={index}>
+        <div
+          className="card col-4 col-md-3 ml-5 my-2"
+          key={index}
+          // style={{ height: "20rem", width: "15rem" }}
+        >
           <div className="card-body">
             <img
               className="card-img-top"
+              style={{ width: "100%", height: "20vw", objectFit: "cover" }}
               src={process.env.REACT_APP_API_URL + movie.movieImage}
               alt=""
             />
-            <h5 className="card-title">{movie.title}</h5>
+            <h5 className="card-title mt-auto" style={{ fontSize: "2vw" }}>
+              {movie.title}
+            </h5>
           </div>
           <div
             className="card-footer d-flex justify-content-around"
-            style={{ fontSize: "1.5rem" }}
+            style={{ height: "6vw", width: "100%" }}
           >
             <button
               onClick={() => this.handleResponse(movie._id, { like: true })}
@@ -92,7 +99,7 @@ class Movie extends Component {
                   ? "btn btn-success"
                   : "btn btn-outline-success"
               }
-              style={{ fontSize: "1.5rem" }}
+              // style={{ fontSize: "1.5rem" }}
             >
               {this.renderResponse(movie, "thumbs-up")}
               <span className="ml-2">{movie.response.likeCount}</span>
@@ -105,7 +112,7 @@ class Movie extends Component {
                   ? "btn btn-danger"
                   : "btn btn-outline-danger"
               }
-              style={{ fontSize: "1.5rem" }}
+              // style={{ fontSize: "1.5rem" }}
             >
               {this.renderResponse(movie, "thumbs-down")}
               <span className="ml-2">{movie.response.dislikeCount}</span>
@@ -123,9 +130,9 @@ class Movie extends Component {
 
     return (
       <React.Fragment>
-        <div className="container my-3 row">{this.renderSearchBar()}</div>
-        <div className="container-fluid mt-2 row">
-          {this.renderMovies(movies)};
+        <div className="container my-3 row ">{this.renderSearchBar()}</div>
+        <div className="container-fluid mt-2 d-flex justify-content-center">
+          <div className="container row">{this.renderMovies(movies)}</div>
         </div>
       </React.Fragment>
     );

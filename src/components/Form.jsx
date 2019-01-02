@@ -37,10 +37,9 @@ class Form extends Component {
     return error ? error.details[0].message : "";
   };
 
-  handleAccountChange = event => {
+  handleValueChange = event => {
     const key = event.target.id;
     const newValue = event.target.value;
-    console.log(newValue);
     this.props[`update${key.charAt(0).toUpperCase() + key.slice(1)}`](newValue);
   };
 }

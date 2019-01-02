@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Movie from "./components/Movie";
+import addMovie from "./components/addMovie";
 import NotFound from "./components/NotFound";
 import { getCurrentUser } from "./services/authService";
 import { saveCurrentUser } from "./actions/authActions";
@@ -32,7 +33,6 @@ library.add(
 class App extends Component {
   componentDidMount() {
     const user = getCurrentUser();
-    console.log(user);
     if (user) store.dispatch(saveCurrentUser(user));
   }
   render() {
@@ -44,6 +44,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/movie" component={Movie} />
+          <Route path="/addMovie" component={addMovie} />
           <Route path="/not-found" component={NotFound} />
           <Redirect from="/" to="/movie" exact />
           <Redirect to="/not-found" />

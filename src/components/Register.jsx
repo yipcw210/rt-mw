@@ -24,12 +24,9 @@ class Register extends Form {
     e.preventDefault();
     this.validateForm(this.props.registerInfo);
     if (!this.hasError(this.props.registerError)) {
-      const { data, headers } = await registerUser(this.props.registerInfo);
-      console.log("reg");
-      console.log(data);
-      console.log(headers);
+      const { headers } = await registerUser(this.props.registerInfo);
+
       const jwt = headers["x-auth-token"];
-      console.log(jwt);
       localStorage.setItem("token", jwt);
       // this.props.history.push("/");
       window.location.href = "/";
@@ -50,7 +47,7 @@ class Register extends Form {
                   className="form-control"
                   id="registerUsername"
                   placeholder="Enter your username"
-                  onChange={this.handleAccountChange}
+                  onChange={this.handleValueChange}
                 />
                 {registerError.registerUsernameError && (
                   <div className="alert alert-danger">
@@ -67,7 +64,7 @@ class Register extends Form {
                   className="form-control"
                   id="registerPassword"
                   placeholder="Enter your password"
-                  onChange={this.handleAccountChange}
+                  onChange={this.handleValueChange}
                 />
                 {registerError.registerPasswordError && (
                   <div className="alert alert-danger">
